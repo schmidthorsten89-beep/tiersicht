@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101418">
+  <meta name="description" content="Sieh die Welt mit der Kamera so, wie Hund, Biene, Adler und andere Tiere sie wahrnehmen.">
+  <title>Tiersicht</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="buehne">
+    <canvas id="leinwand" aria-label="Kamerabild aus Sicht des gewählten Tiers"></canvas>
+    <video id="video" playsinline muted hidden></video>
+
+    <div id="teiler" class="teiler" hidden>
+      <div class="teiler-linie"></div>
+      <div class="teiler-griff" aria-hidden="true">⇆</div>
+      <span class="teiler-label links">Mensch</span>
+      <span id="teiler-tier" class="teiler-label rechts">Tier</span>
+    </div>
+
+    <header class="leiste-oben">
+      <button id="knopf-titel" class="titel" type="button" aria-label="Erklärung öffnen">
+        <span id="titel-name" class="titel-name">Mensch</span>
+        <span id="titel-kurz" class="titel-kurz"></span>
+      </button>
+      <div class="knoepfe-oben">
+        <button id="knopf-info" class="rund" type="button" aria-label="Erklärung zum Tier">i</button>
+        <button id="knopf-vergleich" class="rund" type="button" aria-label="Mensch und Tier vergleichen" aria-pressed="false">⇆</button>
+        <button id="knopf-wechseln" class="rund" type="button" aria-label="Kamera wechseln" hidden>⟲</button>
+      </div>
+    </header>
+
+    <div id="hinweis" class="hinweis" hidden>
+      <p id="hinweis-text"></p>
+      <div class="hinweis-knoepfe">
+        <button id="knopf-erneut" type="button">Kamera erneut versuchen</button>
+        <button id="knopf-bild-hinweis" type="button" class="zweitrangig">Bild aus Galerie wählen</button>
+      </div>
+    </div>
+
+    <footer class="leiste-unten">
+      <div id="tierliste" class="tierliste" role="listbox" aria-label="Tier auswählen"></div>
+      <div class="ausloeser-reihe">
+        <button id="knopf-bild" class="rund klein" type="button" aria-label="Bild aus Galerie wählen">🖼</button>
+        <button id="knopf-foto" class="ausloeser" type="button" aria-label="Foto aufnehmen"></button>
+        <button id="knopf-kamera" class="rund klein" type="button" aria-label="Zurück zur Kamera" hidden>📷</button>
+        <span id="platzhalter-rechts" class="platzhalter"></span>
+      </div>
+    </footer>
+  </main>
+
+  <dialog id="info" class="sheet">
+    <div class="sheet-kopf">
+      <span id="info-emoji" class="info-emoji"></span>
+      <div>
+        <h2 id="info-name"></h2>
+        <p id="info-kurz" class="info-kurz"></p>
+      </div>
+      <button id="info-schliessen" class="schliessen" type="button" aria-label="Schließen">✕</button>
+    </div>
+    <div class="sheet-inhalt">
+      <dl id="info-fakten" class="fakten"></dl>
+      <figure id="info-sichtfeld" class="sichtfeld"></figure>
+      <div id="info-texte" class="texte"></div>
+      <div id="info-grenze" class="grenze"></div>
+      <p class="fussnote">Alle Darstellungen sind Annäherungen. Wie ein Tier etwas wirklich erlebt, kann niemand genau wissen.</p>
+    </div>
+  </dialog>
+
+  <div id="foto" class="foto" hidden>
+    <img id="foto-bild" alt="Aufgenommenes Foto">
+    <div class="foto-knoepfe">
+      <button id="foto-teilen" type="button">Teilen</button>
+      <button id="foto-speichern" type="button">Speichern</button>
+      <button id="foto-schliessen" type="button" class="zweitrangig">Schließen</button>
+    </div>
+  </div>
+
+  <div id="status" class="status" role="status" hidden></div>
+  <input id="datei" type="file" accept="image/*" hidden>
+
+  <script src="tiere.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
